@@ -1,66 +1,110 @@
-Linkees **Experimental** Branch 🔬💻
+# LinkTree Free Clone
 
-> ⚠️ Warning <br/> <br/>
-> This branch of Linkees is for experimental purposes only and is not intended for production use. Most of the components in this branch are broken and may not function as expected.
+[![Playwright Tests](https://github.com/yoanbernabeu/LinkTreeFreeClone/actions/workflows/playwright.yml/badge.svg)](https://github.com/yoanbernabeu/LinkTreeFreeClone/actions/workflows/playwright.yml) [![Netlify Status](https://api.netlify.com/api/v1/badges/3e928715-44c6-4439-864e-6a346f699c07/deploy-status)](https://app.netlify.com/sites/linktreefreeclone/deploys)
 
-<table>
-<tr >
-    <th><img src="https://s3.us-east-2.amazonaws.com/fueler.io-images/fueler-creatons/ZO3GUmNNWMJL8vuRQMQIDs7ConJCktJOOo0xTjgr.png" width="50px" height="50px" style="display:inline-block; "/></th>
-    <th><h1>&ensp;Linkees</h1></th>
-</tr>
-</table>
+![screenshoot](readme.png)
 
-[![Generic badge](https://img.shields.io/badge/BUILD-Success-<COLOR>.svg?logo=github)](https://vercel.com/heysagnik/bio/deployments) [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/heysagnik.svg?style=social&label=Follow%20%40heysagnik)](https://twitter.com/heysagnik)
+LinkTree Free Clone is a free clone of LinkTree, a popular link aggregator for social media. 
 
-## About 🎯
+It is built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com).
 
-A beautiful Single Page Web App made with React to display all your important social links for your followers (Alternative to linktr.ee).
+Feel free to use it as a template for your own projects.
 
-![Screenshot](https://api.microlink.io/?url=https://heysagnik.vercel.app&screenshot=true&meta=false&embed=screenshot.url&waitForTimeout=1500&type=jpeg&overlay.browser=dark&overlay.background=linear-gradient%28225deg%2C+%23FF057C+0%25%2C+%238D0B93+50%25%2C+%23321575+100%25%29)
+## 👀 Demo
 
-## How to use ?🤔
+You can see a demo of the project at [https://linktreefreeclone.yoandev.co/](https://linktreefreeclone.yoandev.co/)
 
-install the linkees package
+## 🚀 Quick start
 
-```
-npm install --save linkees
-```
+1. **Customize your general settings**
 
-import Linkees component from linkees package in your react app
+   Open `src/config.ts` and edit the `SUBTITLE`, `TITLE`, `TAGLINE`, `contact`, `phone` and `email` variables.
 
-```
-import Linkees, { CHANNEL_TYPES } from "linkees";
-```
+2. **Customize your links**
 
-Create a config for your links
+    Create a new file in `src/pages/links/` for each link you want to add.
+    The file name will be not used, but it is recommended to use a descriptive name.
+    The file should contain a frontmatter section with the following variables:
+    
+    * `title`: The title of the link
+    
+    * `emoji`: The emoji to use for the link
+    
+    * `href`: The URL of the link
 
-```
-[
-  {
-    title: //title of the link card
-    subtitle: //subtitle of the link card
-    link: //URL
-    type: //channel type
-  }
-]
-```
+    Example:
+    
+    ```md
+    ---
 
-Example can be found in `example-linktree/src/index.tsx`
+    title: Link 1
+    emoji: 📺
+    href: https://lorem.com
 
-Deploy to Vercel or any other platform and Enjoy!
+    ---
+    ```
 
-<br>
+3. **Customize your avatar**
 
-<br>
+    Replace the file `src/public/avatar.png` with your own avatar.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fheysagnik%2FLinkees)
+4. **Customize your social media links**
 
-We also support **_Docker 🐳_** .For more details read [this](https://github.com/heysagnik/Linkees/blob/d15c73b40e140249aa58e7354b80e1ae7508ef9f/docker.md).
+    Create a new file in `src/pages/social/` for each social media link you want to add.
+    The file name will be not used, but it is recommended to use a descriptive name.
+    The file should contain a frontmatter section with the following variables:
 
-## Contributing 📝
+    * `icon`: The icon to use for the link
+    
+    * `url`: The URL of the link
 
-We always welcome contributions; big or small, it can be documentation updates, adding new checks or something bigger. Please check the Contributing Guide for details on how to help out.
+    Example:
 
-### Special Thanks to those People who have contributed :
+    ```md
+    ---
+    icon: linkedin
+    url: https://linkedin.com/in/yoan-bernabeu
 
-<img width="200" src="https://contrib.rocks/image?repo=heysagnik/Linkees" />
+    ---
+    ```
+
+## 🔠 List of available icons for social media
+
+For the `icon` variable in the frontmatter section of the social media links, you can use the following values:
+
+* `behance`
+* `discord`
+* `github`
+* `facebook`
+* `instagram`
+* `google`
+* `linkedin`
+* `pinterest`
+* `vkontakte`
+* `stackoverflow`
+* `telegram`
+* `youtube`
+* `tiktok`
+* `snapchat`
+* `slack`
+* `messenger`
+* `dribbble`
+* `reddit`
+* `twitter`
+* `whatsapp`
+* `twitch`
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                | Action                                             |
+| :--------------------- | :------------------------------------------------- |
+| `npm install`          | Installs dependencies                              |
+| `npm run dev`          | Starts local dev server at `localhost:3000`        |
+| `npm run build`        | Build your production site to `./dist/`            |
+| `npm run preview`      | Preview your build locally, before deploying       |
+
+## 📝 License
+
+Licensed under the [MIT License](./LICENSE).
