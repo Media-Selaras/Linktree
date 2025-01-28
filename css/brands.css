@@ -34,7 +34,7 @@
 /* Default */
 .button.button-default {
 	--button-text:#ffffff;
-	--button-background:#2457F5;
+	--button-background:#f45800;
 	--button-border:1px solid #ffffff;
 }
 
@@ -171,14 +171,14 @@
 
 /* Etsy */
 .button-etsy {
-	--button-text:#ffffff;
-	--button-background:#F45800;
+	--button-text:#F45800;
+	--button-background:#ffffff;
 }
 
 /* Facebook */
 .button-faceb {
 	--button-text:#ffffff;
-	--button-background:#1877f2;
+	--button-background:#f45800;
 }
 
 /* Facebook Messenger */
