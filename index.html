@@ -45,36 +45,71 @@
       opacity: 0;
       pointer-events: none;
     }
+
+    /* Animasi Ketik Teks */
+    .typing-text {
+      font-weight: bold;
+      font-family: "Courier New", monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid black;
+    }
+
+    /* Animasi Tombol */
+    @keyframes wiggle {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      25% {
+        transform: rotate(2deg);
+      }
+
+      50% {
+        transform: rotate(-2deg);
+      }
+
+      75% {
+        transform: rotate(1deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+
+    .button:hover {
+      animation: wiggle 0.3s ease-in-out;
+    }
   </style>
 </head>
 
 <body>
+  <!-- Preloader -->
   <div class="loading-screen" id="loadingScreen">
     <img src="/images/icons/medsel2.png" alt="Media Selaras Logo">
   </div>
 
+  <!-- Main Content -->
   <div class="container" id="mainContent" style="display: none;">
     <div class="column">
       <img class="avatar avatar--rounded" src="/images/icons/medsel2.png" srcset="/images/icons/medsel2.png 2x"
         alt="LittleLink">
       <h1>
-        <div>Media Selaras</div>
+        <div><span id="typingText" class="typing-text"></span></div>
       </h1>
       <p>✨ Learning Together to Getting Better<br>📚 Workshop Kreatif & Webinar Inspiratif<br>📥
         Collaboration/Partnership</p>
       <div class="button-stack" role="navigation">
-        <a class="button button-default"
-          href="https://open.spotify.com/show/3ryqxrMgIF6rpfRIAgdevh?si=053f87febf68435a&nd=1&dlsi=9c07b6ce15674b5d"
-          target="_blank" rel="noopener" role="button">
+        <a class="button button-default" href="https://open.spotify.com/show/3ryqxrMgIF6rpfRIAgdevh" target="_blank"
+          rel="noopener" role="button">
           <img class="icon" aria-hidden="true" src="images/icons/podcast.svg" alt="Suara Selaras">Suara Selaras
         </a>
         <a class="button button-etsy" href="#" target="_blank" rel="noopener" role="button">
           <img class="icon" aria-hidden="true" src="images/icons/website.svg" alt="Website Media Selaras">Website Media
           Selaras
         </a>
-        <a class="button button-faceb"
-          href="https://wa.me/6285121089405?text=Halo%20Tim%20Partnership%20Media%20Selaras!%F0%9F%98%84%0ASaya%20mau%20nanya-nanya%20nih%20min"
-          target="_blank" rel="noopener" role="button">
+        <a class="button button-faceb" href="https://wa.me/6285121089405" target="_blank" rel="noopener" role="button">
           <img class="icon" aria-hidden="true" src="images/icons/partnership.svg" alt="Partnership">Partnership Media
           Selaras
         </a>
@@ -97,12 +132,68 @@
   <script>
     document.getElementById("currentYear").textContent = new Date().getFullYear();
 
+    // Preloader Animasi
     window.addEventListener("load", function () {
       setTimeout(function () {
         document.getElementById("loadingScreen").classList.add("hidden");
         document.getElementById("mainContent").style.display = "block";
       }, 2000);
     });
+
+    // Fungsi Mendapatkan Salam Berdasarkan Waktu
+    function getTimeBasedText() {
+      const hour = new Date().getHours();
+      if (hour >= 5 && hour < 12) return "Selamat Pagi";
+      if (hour >= 12 && hour < 18) return "Selamat Siang";
+      if (hour >= 18 && hour < 21) return "Selamat Sore";
+      return "Selamat Malam";
+    }
+
+    // Animasi Ketik Teks
+    function typeText(element, text, speed = 100, callback) {
+      let index = 0;
+      function typing() {
+        if (index < text.length) {
+          element.textContent += text.charAt(index);
+          index++;
+          setTimeout(typing, speed);
+        } else {
+          setTimeout(() => deleteText(element, speed, callback), 2000);
+        }
+      }
+      typing();
+    }
+
+    function deleteText(element, speed = 50, callback) {
+      let text = element.textContent;
+      function deleting() {
+        if (text.length > 0) {
+          text = text.slice(0, -1);
+          element.textContent = text;
+          setTimeout(deleting, speed);
+        } else if (callback) {
+          setTimeout(callback, 500);
+        }
+      }
+      deleting();
+    }
+
+    function animateText() {
+      const textElement = document.getElementById("typingText");
+      let isOriginal = true;
+
+      function switchText() {
+        const newText = isOriginal ? getTimeBasedText() : "Media Selaras";
+        typeText(textElement, newText, 100, () => {
+          isOriginal = !isOriginal;
+          setTimeout(switchText, 500);
+        });
+      }
+
+      switchText();
+    }
+
+    document.addEventListener("DOMContentLoaded", animateText);
   </script>
 </body>
 
