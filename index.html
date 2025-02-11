@@ -1,97 +1,109 @@
 <!DOCTYPE html>
-
-<!-- 
-  To change the theme, change the class on the html tag below to one of:
-  - theme-auto: Automatically switches based on user's system preferences
-  - theme-light: Forces light theme
-  - theme-dark: Forces dark theme
--->
-
-<html class="theme-auto" lang="en"> <!-- Update`class="theme-auto" with your preference -->
+<html class="theme-auto" lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Page Title - Change this to your name/brand (50-60 characters recommended) -->
   <title>Media Selaras - Linktree</title>
-  <link rel="icon" type="image/x-icon" href="/images/icons/medsel2.png"> <!-- Update this with your own favicon -->
-
-  <!-- Meta Description - Write a description (150-160 characters recommended) -->
-  <meta name="description" content="Replace this with your own, this appears in search results and when sharing.">
-
-  <!-- Keywords -->
-  <meta name="keywords" content="your name, industry, and specialties">
-
-  <!-- Canonical URL - Helps prevent duplicate content issues -->
-  <meta rel="canonical" href="https://yourwebsite.com">
-
-  <!-- Author Information -->
-  <meta name="author" content="Media Selaras">
-
-  <!-- Stylesheets -->
+  <link rel="icon" type="image/x-icon" href="/images/icons/medsel2.png">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/brands.css">
+  <style>
+    /* Styling for loading screen */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 1s ease-out;
+    }
 
+    .loading-screen img {
+      width: 150px;
+      height: auto;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="loading-screen" id="loadingScreen">
+    <img src="/images/icons/medsel2.png" alt="Media Selaras Logo">
+  </div>
 
-  <div class="container">
+  <div class="container" id="mainContent" style="display: none;">
     <div class="column">
-
       <img class="avatar avatar--rounded" src="/images/icons/medsel2.png" srcset="/images/icons/medsel2.png 2x"
         alt="LittleLink">
-
       <h1>
         <div>Media Selaras</div>
       </h1>
-
-      <p>✨ Learning Together to Getting Better
-        <br>📚 Workshop Kreatif & Webinar Inspiratif
-        <br>📥 Collaboration/Partnership
-      </p>
-
+      <p>✨ Learning Together to Getting Better<br>📚 Workshop Kreatif & Webinar Inspiratif<br>📥
+        Collaboration/Partnership</p>
       <div class="button-stack" role="navigation">
-
         <a class="button button-default"
           href="https://open.spotify.com/show/3ryqxrMgIF6rpfRIAgdevh?si=053f87febf68435a&nd=1&dlsi=9c07b6ce15674b5d"
-          target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true"
-            src="images/icons/podcast.svg" alt="Suara Selaras">Suara Selaras</a>
-
-        <a class="button button-etsy" href="#" target="_blank" rel="noopener" role="button"><img class="icon"
-            aria-hidden="true" src="images/icons/website.svg" alt="Website Media Selaras">Website Media Selaras</a>
-
+          target="_blank" rel="noopener" role="button">
+          <img class="icon" aria-hidden="true" src="images/icons/podcast.svg" alt="Suara Selaras">Suara Selaras
+        </a>
+        <a class="button button-etsy" href="#" target="_blank" rel="noopener" role="button">
+          <img class="icon" aria-hidden="true" src="images/icons/website.svg" alt="Website Media Selaras">Website Media
+          Selaras
+        </a>
         <a class="button button-faceb"
           href="https://wa.me/6285121089405?text=Halo%20Tim%20Partnership%20Media%20Selaras!%F0%9F%98%84%0ASaya%20mau%20nanya-nanya%20nih%20min"
-          target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true"
-            src="images/icons/partnership.svg" alt="Partnership">Partnership Media Selaras</a>
-
+          target="_blank" rel="noopener" role="button">
+          <img class="icon" aria-hidden="true" src="images/icons/partnership.svg" alt="Partnership">Partnership Media
+          Selaras
+        </a>
         <a class="button button-instagram" href="https://www.instagram.com/mediaselaras/" target="_blank" rel="noopener"
-          role="button"><img class="icon" aria-hidden="true" src="images/icons/instagram.svg"
-            alt="Instagram">Instagram</a>
-
+          role="button">
+          <img class="icon" aria-hidden="true" src="images/icons/instagram.svg" alt="Instagram">Instagram
+        </a>
         <a class="button button-linked" href="https://id.linkedin.com/company/media-selaras" target="_blank"
-          rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/linkedin.svg"
-            alt="LinkedIn">LinkedIn</a>
-
+          rel="noopener" role="button">
+          <img class="icon" aria-hidden="true" src="images/icons/linkedin.svg" alt="LinkedIn">LinkedIn
+        </a>
       </div>
-
-      <!-- Footer with dynamic year -->
       <footer>
-      Developed by Kepengurusan 2025
+        Developed by Kepengurusan 2025
         <p>&copy; <span id="currentYear"></span> Media Selaras</p>
       </footer>
-
     </div>
   </div>
 
   <script>
-    // Set current year dynamically
     document.getElementById("currentYear").textContent = new Date().getFullYear();
-  </script>
 
+    window.addEventListener("load", function () {
+      setTimeout(function () {
+        document.getElementById("loadingScreen").classList.add("hidden");
+        document.getElementById("mainContent").style.display = "block";
+      }, 2000);
+    });
+  </script>
 </body>
 
 </html>
